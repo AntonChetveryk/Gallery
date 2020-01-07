@@ -6,7 +6,7 @@ export default class Item extends React.Component {
     return (
       <div>
         <div className="img-container">
-          <img src={item} alt={item.data.title} className="img" />
+          <img src={item.data} className="img" />
         </div>
         <h3 className="mt-2">{item.data.title}</h3>
         <div className="comments">{`Number of comments: ${item.data.num_comments}`}</div>
