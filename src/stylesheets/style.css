@@ -15,7 +15,7 @@
 
 .item {
   padding: 10px;
-  width: 330px;
+  width: 350px;
 }
 
 img {
@@ -46,4 +46,16 @@ a {
 .loading {
   width: 100px;
   height: 100px;
+}
+
+.range {
+  display: block;
+  width: 90%;
+  margin: auto;
+}
+
+.currentFilter {
+  color: lightsalmon;
+  margin-right: 50px;
+  font-size: 1.2rem;
 }

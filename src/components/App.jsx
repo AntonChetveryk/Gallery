@@ -1,17 +1,27 @@
 import React from "react";
 //import itemsArr from "../itemsArr";
-import Item from "./Item";
+
 import Spinner from "../img/loader.gif";
 import AutoRefresh from "./AutoRefresh";
+import Range from "./Range";
+import ItemsList from "./ItemsList";
 
 export default class App extends React.Component {
   constructor() {
     super();
     this.state = {
       data: [],
-      isLoading: false
+      isLoading: false,
+      num_comments: 0
     };
   }
+
+  setNumComments = e => {
+    let value = e.target.value;
+    this.setState({
+      num_comments: value
+    });
+  };
 
   getData = () => {
     const link = "https://www.reddit.com/r/reactjs.json?limit=30";
@@ -40,24 +50,21 @@ export default class App extends React.Component {
   }
 
   render() {
-    const { isLoading, data } = this.state;
+    const { isLoading, data, num_comments } = this.state;
     return (
       <div className="container">
         <h1 className="header-tittle">Top commented.</h1>
+        <span className="currentFilter">{`Current filter: ${num_comments}`}</span>
         <AutoRefresh getData={this.getData} />
+        <Range
+          setNumComments={this.setNumComments}
+          num_comments={num_comments}
+        />
         <div className={isLoading ? "loader-container" : "items-container"}>
           {isLoading ? (
             <img src={Spinner} alt="loading" className="loading" />
           ) : (
-            data
-              .sort((a, b) => b.data.num_comments - a.data.num_comments)
-              .map((item, i) => {
-                return (
-                  <div key={i} className="item">
-                    <Item item={item} />
-                  </div>
-                );
-              })
+            <ItemsList data={data} num_comments={num_comments} />
           )}
         </div>
       </div>
