@@ -9,7 +9,6 @@ export default class AutoRefresh extends React.Component {
   }
 
   intervalHandler = () => {
-    console.log(this.state.isAutoRefreshing);
     if (this.state.isAutoRefreshing) {
       this.interval = setInterval(this.props.getData, 3000);
     } else {

@@ -59,3 +59,10 @@ a {
   margin-right: 50px;
   font-size: 1.2rem;
 }
+
+.noResult {
+  font-size: 1.5rem;
+  color: darkgray;
+  display: block;
+  margin: auto;
+}

@@ -19,7 +19,7 @@ export default class App extends React.Component {
   setNumComments = e => {
     let value = e.target.value;
     this.setState({
-      num_comments: value
+      num_comments: Number(value)
     });
   };
 
@@ -31,17 +31,12 @@ export default class App extends React.Component {
     });
 
     fetch(link)
-      .then(response => {
-        return response.json();
-      })
-      .then(data => {
+      .then(response => response.json())
+      .then(({ data }) => {
         this.setState({
-          isLoading: !this.state.isLoading
+          isLoading: !this.state.isLoading,
+          data: data.children
         });
-        this.setState({
-          data: data.data.children
-        });
-        console.log("getData");
       });
   };
 
@@ -51,6 +46,7 @@ export default class App extends React.Component {
 
   render() {
     const { isLoading, data, num_comments } = this.state;
+
     return (
       <div className="container">
         <h1 className="header-tittle">Top commented.</h1>
